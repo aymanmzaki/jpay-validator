@@ -1,0 +1,5 @@
+--INSERT INTO country (name,code) values ("Cameroon", 237);
+--INSERT INTO country (name,code) values ("Ethiopia", 251);
+--INSERT INTO country (name,code) values ("Morocco", 212);
+--INSERT INTO country (name,code) values ("Mozambique", 258);
+--INSERT INTO country (name,code) values ("Uganda", 256);

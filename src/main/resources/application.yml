@@ -1,0 +1,12 @@
+server:
+  port: 9876
+spring:
+  datasource:
+    url: jdbc:sqlite:sample.db
+    driverClassName: org.sqlite.JDBC
+    initialization-mode:
+
+  jpa:
+    database-platform: com.jumia.jpay.jpayvalidator.configuration.SqlLiteDialect
+    hibernate:
+      ddl-auto: update
