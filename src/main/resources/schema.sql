@@ -1,1 +1,1 @@
-create table if not exists country (name varchar(50),code int primary key);
+create table if not exists country (name varchar(50),pattern varchar(50),code int primary key);

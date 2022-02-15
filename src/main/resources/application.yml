@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:sqlite:sample.db
     driverClassName: org.sqlite.JDBC
-    initialization-mode:
+#    initialization-mode: always
 
   jpa:
     database-platform: com.jumia.jpay.jpayvalidator.configuration.SqlLiteDialect
