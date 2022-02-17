@@ -20,6 +20,7 @@ public class InternationalPhoneValidatorImp implements InternationalPhoneValidat
                     CountryPhoneModel countryPhoneModel= new CountryPhoneModel();
                     countryPhoneModel.setCountry(country.getName());
                     countryPhoneModel.setValid(validate(country.getPattern(),phoneNumber));
+                    countryPhoneModel.setCode(country.getCode().toString());
                     return countryPhoneModel;
                 }).orElse(new CountryPhoneModel());
     }

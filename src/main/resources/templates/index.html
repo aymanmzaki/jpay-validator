@@ -1,0 +1,46 @@
+<htm>
+    <head>
+        <title>Customer List App</title>
+        <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    </head>
+    <body>
+    <div class="container">
+        <form action="#" th:action="@{/}" method="GET" class="form-group">
+            <label for="Country">Country</label>
+            <input type="text" id="country" name="country" placeholder="Country Name" class="form-control">
+            <label for="Status">Status</label>
+            <input type="text" id="status" name="status" placeholder="Status" class="form-control">
+            <input type="submit" class="btn btn-default">
+        </form>
+
+    </div>
+
+    <div th:switch="${customerList}" class="container">
+        <h2 th:case="null">No Phone Numbers</h2>
+        <div th:case="*">
+            <h2>Customers</h2>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>Country Code</th>
+                    <th>Phone Number</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="customer : ${customerList}">
+                    <td th:text="${customer.name}"></td>
+                    <td th:text="${customer.country}"></td>
+                    <td th:text="${customer.code}"></td>
+                    <td th:text="${customer.phone}"></td>
+                    <td th:text="${customer.status}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script th:src="@{/webjars/bootstrap/4.0.0-2/js/bootstrap.min.js}"></script>
+    </body>
+</htm>

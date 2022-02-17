@@ -7,6 +7,7 @@ import com.jumia.jpay.jpayvalidator.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -17,29 +18,31 @@ public class CustomerService {
     @Autowired
     CustomerRepository customerRepository;
 
-    @Autowired InternationalPhoneValidatorImp phoneValidatorService;
-
-    public Optional<Customer> getCustomerByName(String name) {
-        return customerRepository.findByName(name);
-    }
+    @Autowired
+    InternationalPhoneValidatorImp phoneValidatorService;
 
     public List<CustomerModel> getAllCustomers() {
-        return customerRepository.findAll().stream().map(customer -> {
-            CustomerModel customerModel = mapToModel(customer);
-            return customerModel;
-        }).collect(Collectors.toList());
+        return customerRepository.findAll().stream()
+                .map(customer -> {
+                    CustomerModel customerModel = mapToModel(customer);
+                    return customerModel;
+                }).sorted(Comparator.comparing(CustomerModel::getCountry)
+                        .reversed()
+                        .thenComparing(CustomerModel::getStatus)
+                        .reversed())
+                .collect(Collectors.toList());
     }
 
     private CustomerModel mapToModel(Customer customer) {
 
-        CountryPhoneModel countryPhoneModel= phoneValidatorService.getCountryAndValidate(customer.getPhone());
-
+        CountryPhoneModel countryPhoneModel = phoneValidatorService.getCountryAndValidate(customer.getPhone());
         return CustomerModel.builder()
                 .id(customer.getId())
                 .name(customer.getName())
                 .phone(customer.getPhone())
                 .country(countryPhoneModel.getCountry())
-                .valid(countryPhoneModel.isValid())
+                .code(countryPhoneModel.getCode())
+                .status(countryPhoneModel.isValid() ? "Valid" : "Not Valid")
                 .build();
     }
 
