@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -23,10 +22,8 @@ public class CustomerService {
 
     public List<CustomerModel> getAllCustomers() {
         return customerRepository.findAll().stream()
-                .map(customer -> {
-                    CustomerModel customerModel = mapToModel(customer);
-                    return customerModel;
-                }).sorted(Comparator.comparing(CustomerModel::getCountry)
+                .map(customer -> mapToModel(customer))
+                .sorted(Comparator.comparing(CustomerModel::getCountry)
                         .reversed()
                         .thenComparing(CustomerModel::getStatus)
                         .reversed())
