@@ -4,7 +4,7 @@ How to RUN
 ==
 To run this project you can simply run the following command:
 
-`docker run --name jpay-validator-dep -p 8080:8080 -d jpay-validator`
+`docker run --name jpay-validator-dep -p 8080:8080 -d aymanzaki/jpay-validator`
 
 BUILD
 ==
