@@ -12,7 +12,7 @@ To build source code :
  `mvn clean install`
 
 Build docker image and tag it  : 
-`docker build . -t TAGNAME`
+`docker build . -t jpay-validator`
 
 Docker image contain a copy from sample.db
 
